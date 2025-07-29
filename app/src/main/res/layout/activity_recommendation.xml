@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/weather_background"
+    android:padding="16dp">
+
+    <!-- 제목 -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="맞춤 코스 추천"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- 조건 선택 카드 -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="추천 조건 설정"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- 계절 선택 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="계절:"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_gravity="center_vertical" />
+
+                <Spinner
+                    android:id="@+id/spinner_season"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/seasons" />
+            </LinearLayout>
+
+            <!-- 날씨 선택 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="날씨:"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_gravity="center_vertical" />
+
+                <Spinner
+                    android:id="@+id/spinner_weather"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/weather_conditions" />
+            </LinearLayout>
+
+            <!-- 유동인구 선택 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="유동인구:"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_gravity="center_vertical" />
+
+                <Spinner
+                    android:id="@+id/spinner_crowd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@array/crowd_levels" />
+            </LinearLayout>
+
+            <!-- 버튼들 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_auto_detect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="자동 감지"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/bg_button_round"
+                    android:layout_marginEnd="8dp" />
+
+                <Button
+                    android:id="@+id/btn_get_recommendations"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="추천받기"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/bg_button_green"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 추천 결과 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_recommendations"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <!-- 추천 결과 없음 메시지 -->
+    <TextView
+        android:id="@+id/tv_no_recommendations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="조건을 설정하고 추천받기를 눌러주세요."
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+</LinearLayout> 

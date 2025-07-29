@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 원형 배경 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+            <stroke android:width="3dp" android:color="#FF5722" />
+            <size android:width="60dp" android:height="60dp" />
+        </shape>
+    </item>
+    
+    <!-- 실제 이미지를 원형으로 클립 -->
+    <item android:top="3dp" android:bottom="3dp" 
+          android:left="3dp" android:right="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#FF5722" />
+        </shape>
+    </item>
+</layer-list> 

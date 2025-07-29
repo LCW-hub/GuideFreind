@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item
+        android:id="@+id/popup_course1"
+        android:title="둘레길 1코스 - 역사 탐방길"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+    
+    <item
+        android:id="@+id/popup_course2"
+        android:title="둘레길 2코스 - 문화 체험길"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+    
+    <item
+        android:id="@+id/popup_course3"
+        android:title="둘레길 3코스 - 자연 힐링길"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    
+    <item
+        android:id="@+id/popup_course4"
+        android:title="북한산 1코스 - 도봉산 코스"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+    
+    <item
+        android:id="@+id/popup_course5"
+        android:title="북한산 2코스 - 우이동 코스"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+    
+    <item
+        android:id="@+id/popup_course6"
+        android:title="북한산 3코스 - 정릉 코스"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+=======
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        
+</menu> 

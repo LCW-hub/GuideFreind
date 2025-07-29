@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.gps">
+
+    <!-- 필수 권한 -->
+<<<<<<< HEAD
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <application
+        android:name=".GuideFriendApplication"
+=======
+=======
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ✅ 필수 권한 -->
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GPS"
+        tools:targetApi="31">
+
+<<<<<<< HEAD
+        <!-- 네이버 지도 API 키 -->
+=======
+<<<<<<< HEAD
+        <!-- 네이버 지도 API 키 -->
+=======
+        <!-- ✅ 네이버 지도 API 키 -->
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        <meta-data
+            android:name="com.naver.maps.map.NCP_KEY_ID"
+            android:value="iaxrf6bmtc" />
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        <!-- 앱 시작 액티비티 -->
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+<<<<<<< HEAD
+=======
+=======
+        <!-- ✅ 앱 시작 액티비티 -->
+        <activity
+            android:name=".MainActivity"
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        <!-- 네이버 지도 관련 액티비티 -->
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
+
+        <!-- 기타 화면들 -->
+<<<<<<< HEAD
+=======
+=======
+        <!-- ✅ 네이버 지도 관련 액티비티 -->
+        <activity android:name=".MapsActivity" android:exported="true" />
+
+        <!-- ✅ 기타 화면들 -->
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SignupActivity" />
+        <activity android:name=".FindIdActivity" />
+        <activity android:name=".FindPwActivity" />
+        <activity android:name=".AdminMain" />
+        <activity android:name=".GuestMain" />
+        <activity android:name=".NormalMain" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+        <!-- ✅ 새로운 기능 액티비티들 -->
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".WeatherActivity" />
+        <activity android:name=".CommunityActivity" />
+        <activity android:name=".TipsActivity" />
+        <activity android:name=".FavoritesActivity" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+        
+        <!-- 새로 추가된 기능들 -->
+        <activity android:name=".CourseDetailActivity" />
+        <activity android:name=".RecommendationActivity" />
+=======
+>>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
+>>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+
+    </application>
+</manifest>
