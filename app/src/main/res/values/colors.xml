@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<<<<<<< HEAD
     
     <!-- 메인 색상 - 자연친화적인 녹색 계열 -->
     <color name="colorPrimary">#2E7D32</color>
@@ -59,48 +58,4 @@
     
     <!-- 카드 그림자 색상 -->
     <color name="cardShadow">#1A000000</color>
-=======
-<<<<<<< HEAD
-    <color name="colorPrimary">#4CAF50</color>
-    <color name="colorPrimaryDark">#388E3C</color>
-    <color name="colorAccent">#8BC34A</color>
-=======
-    <color name="colorPrimary">#2196F3</color>
-    <color name="colorPrimaryDark">#1976D2</color>
-    <color name="colorAccent">#4CAF50</color>
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
-    
-    <!-- 추가 색상들 -->
-    <color name="colorSecondary">#FF9800</color>
-    <color name="colorSurface">#FFFFFF</color>
-<<<<<<< HEAD
-    <color name="colorBackground">#F1F8E9</color>
-=======
-    <color name="colorBackground">#F5F5F5</color>
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnSecondary">#000000</color>
-    <color name="textColorPrimary">#212121</color>
-    <color name="textColorSecondary">#757575</color>
-    
-    <!-- 그라데이션 색상들 -->
-    <color name="gradientStart">#4FC3F7</color>
-    <color name="gradientEnd">#29B6F6</color>
-    <color name="weatherBlue">#03A9F4</color>
-    <color name="naturGreen">#4CAF50</color>
-<<<<<<< HEAD
-    
-    <color name="colorCard">#FFFFFF</color>
-    <color name="colorText">#212121</color>
-    <color name="colorSub">#B3E5FC</color>
-    <color name="colorDivider">#BDBDBD</color>
-    <color name="colorButton">#4CAF50</color>
-    <color name="colorButtonPressed">#388E3C</color>
-    <color name="colorButtonText">#FFFFFF</color>
-    <color name="colorError">#F44336</color>
-    <color name="colorSuccess">#4CAF50</color>
-    <color name="colorWarning">#FFC107</color>
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
 </resources>
