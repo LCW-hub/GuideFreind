@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">산책로 도우미</string>
-=======
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">길잡이 친구</string>
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">설정</string>
     <string name="title_activity_maps">산책로 안내</string>
@@ -17,7 +10,6 @@
     <string name="title_activity_community">커뮤니티</string>
     <string name="title_activity_favorites">즐겨찾기</string>
     <string name="title_activity_tips">산책로 팁</string>
-<<<<<<< HEAD
     <string name="slogan">자연과 함께하는 안전한 산책</string>
     <string name="btn_back_to_seoul">서울로 돌아가기</string>
     <string name="btn_close">닫기</string>
@@ -43,21 +35,4 @@
     <string name="start_trail">자연과 함께하는 안전한 산책을 시작하세요</string>
     <string name="trail_helper">산책로 도우미</string>
     <string name="safe_trail">자연과 함께하는 안전한 산책</string>
-=======
-    <string name="slogan">당신의 산책을 함께하는 길잡이 친구</string>
-    <string name="btn_back_to_seoul">서울로 돌아가기</string>
-    <string name="btn_close">닫기</string>
-    <string name="btn_course_select">코스 선택</string>
-=======
-<resources>
-    <string name="app_name">GPS</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-    <string name="register_title">회원가입</string>
-    <string name="weather_title">날씨 정보</string>
-    <string name="community_title">산책 커뮤니티</string>
-    <string name="tips_title">산책로 팁</string>
-    <string name="favorites_title">즐겨찾는 길</string>
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
 </resources>
