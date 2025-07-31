@@ -66,8 +66,8 @@ GPS/
 
 ### 백엔드 서버
 - **언어**: Node.js
-- **데이터베이스**: Firebase Firestore (옵션)
-- **인증**: Firebase Auth (옵션)
+- **데이터베이스**: Firebase Firestore, sql developer
+
 
 ### 외부 API
 - **날씨**: OpenWeatherMap API

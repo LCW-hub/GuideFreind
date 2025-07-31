@@ -17,7 +17,7 @@
         <item>안개</item>
     </string-array>
 
-    <!-- 유동인구 수준 배열 -->
+    <!-- 혼잡도 레벨 배열 -->
     <string-array name="crowd_levels">
         <item>매우 적음</item>
         <item>적음</item>
@@ -30,7 +30,7 @@
     <string-array name="emergency_types">
         <item>의료</item>
         <item>안전</item>
-        <item>사고</item>
+        <item>화재</item>
         <item>기타</item>
     </string-array>
 

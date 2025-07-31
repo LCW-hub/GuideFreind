@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="@drawable/trail_background_gradient">
+    android:orientation="vertical"
+    android:background="@drawable/trail_background_gradient_enhanced"
+    android:gravity="center">
 
-    <!-- 메인 로고 컨테이너 -->
+    <!-- 로고 컨테이너 -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardLogo"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         app:cardBackgroundColor="@color/colorCard"
-        app:cardCornerRadius="80dp"
-        app:cardElevation="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:cardCornerRadius="100dp"
+        app:cardElevation="16dp"
+        android:layout_marginBottom="32dp">
 
         <ImageView
             android:id="@+id/ivLogo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_trail_logo_modern"
             android:tint="@color/colorPrimary" />
@@ -30,145 +27,66 @@
     </androidx.cardview.widget.CardView>
 
     <!-- 앱 제목 -->
-=======
-    android:background="@color/colorBackground">
-
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ic_walk_logo"
-        app:layout_constraintBottom_toTopOf="@id/tvAppName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
-
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
     <TextView
-        android:id="@+id/tvAppName"
+        android:id="@+id/tvAppTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:layout_marginTop="32dp"
         android:text="산책로 도우미"
         android:textColor="@color/colorPrimary"
-        android:textSize="32sp"
+        android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardLogo" />
+        android:layout_marginBottom="16dp" />
 
     <!-- 부제목 -->
-=======
-        android:layout_marginTop="16dp"
-        android:text="산책로 도우미"
-        android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivLogo" />
-
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
     <TextView
-        android:id="@+id/tvSubTitle"
+        android:id="@+id/tvAppSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:layout_marginTop="12dp"
         android:text="자연과 함께하는 안전한 산책"
         android:textColor="@color/textColorSecondary"
         android:textSize="18sp"
-=======
-        android:layout_marginTop="8dp"
-        android:text="당신의 산책을 더 즐겁게"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+        android:layout_marginBottom="48dp" />
 
-<<<<<<< HEAD
-    <!-- 로딩 애니메이션 -->
+    <!-- 로딩 프로그레스 -->
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:indeterminate="true"
         app:indicatorColor="@color/colorPrimary"
-        app:indicatorSize="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:trackColor="@color/trailLightGreen"
-        app:trackThickness="4dp" />
+        app:trackColor="@color/colorSub" />
 
-    <!-- 하단 텍스트 -->
-    <TextView
-        android:id="@+id/tvLoading"
-        android:layout_width="wrap_content"
+    <!-- 하단 자연 요소 아이콘들 -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="산책로 정보를 불러오는 중..."
-        android:textColor="@color/textColorSecondary"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/progressIndicator"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="48dp">
 
-    <!-- 자연 요소 아이콘들 -->
-    <ImageView
-        android:id="@+id/ivNature1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="200dp"
-        android:alpha="0.6"
-        android:src="@drawable/ic_weather_clear"
-        android:tint="@color/trailGreen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_weather_clear"
+            android:tint="@color/trailGreen"
+            android:alpha="0.6"
+            android:layout_marginEnd="16dp" />
 
-    <ImageView
-        android:id="@+id/ivNature2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginTop="150dp"
-        android:alpha="0.6"
-        android:src="@drawable/ic_walk_logo"
-        android:tint="@color/trailBlue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_star"
+            android:tint="@color/trailOrange"
+            android:alpha="0.6"
+            android:layout_marginEnd="16dp" />
 
-    <ImageView
-        android:id="@+id/ivNature3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginBottom="120dp"
-        android:alpha="0.6"
-        android:src="@drawable/ic_star"
-        android:tint="@color/trailOrange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_walk_logo"
+            android:tint="@color/trailBlue"
+            android:alpha="0.6" />
 
-    <ImageView
-        android:id="@+id/ivNature4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="180dp"
-        android:alpha="0.6"
-        android:src="@drawable/ic_info"
-        android:tint="@color/trailPurple"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    </LinearLayout>
 
-=======
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</LinearLayout> 

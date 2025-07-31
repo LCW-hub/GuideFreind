@@ -4,15 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-<<<<<<< HEAD
-    android:background="@color/colorBackground">
-=======
-<<<<<<< HEAD
-    android:background="@color/colorBackground">
-=======
     android:background="@drawable/weather_background">
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
 
     <!-- 툴바 -->
     <androidx.appcompat.widget.Toolbar
@@ -21,152 +13,228 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="날씨 정보"
+        app:titleTextColor="@android:color/white" />
 
     <!-- 스크롤뷰 -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-            android:padding="16dp"
-            android:background="@drawable/bg_card_round"
-            android:elevation="6dp"
-            android:layout_margin="16dp">
-<<<<<<< HEAD
-=======
-=======
-            android:padding="16dp">
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+            android:padding="24dp">
 
-            <TextView
-                android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-<<<<<<< HEAD
-                android:textColor="@color/colorPrimary"
-=======
-<<<<<<< HEAD
-                android:textColor="@color/colorPrimary"
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:id="@+id/tvTemperature"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="48sp"
-                android:textStyle="bold"
-<<<<<<< HEAD
-                android:textColor="#1976D2"
-=======
-<<<<<<< HEAD
-                android:textColor="#1976D2"
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/tvWeatherStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-<<<<<<< HEAD
-                android:textColor="#388E3C"
-=======
-<<<<<<< HEAD
-                android:textColor="#388E3C"
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:id="@+id/tvHumidity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-<<<<<<< HEAD
-                android:textColor="#1976D2"
-=======
-<<<<<<< HEAD
-                android:textColor="#1976D2"
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/tvWindSpeed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-<<<<<<< HEAD
-                android:textColor="#1976D2"
-=======
-<<<<<<< HEAD
-                android:textColor="#1976D2"
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-                android:layout_marginBottom="16dp"/>
-
-            <TextView
-                android:id="@+id/tvRecommendation"
+            <!-- 현재 날씨 카드 -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-<<<<<<< HEAD
-                android:textColor="#388E3C"
-=======
-<<<<<<< HEAD
-                android:textColor="#388E3C"
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
-                android:lineSpacingExtra="4dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/colorCard"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="현재 날씨"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivWeatherIcon"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/ic_weather_clear"
+                            android:tint="@color/colorPrimary" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="16dp">
+
+                            <TextView
+                                android:id="@+id/tvTemperature"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="23°C"
+                                android:textColor="@color/textColorPrimary"
+                                android:textSize="32sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvWeatherDescription"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="맑음"
+                                android:textColor="@color/textColorSecondary"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- 날씨 상세 정보 카드 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/colorCard"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상세 정보"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="습도"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvHumidity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="65%"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="풍속"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvWindSpeed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3.2 m/s"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="기압"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvPressure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1013 hPa"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- 일기 예보 카드 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/colorCard"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="일기 예보"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvForecast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
     </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5일 예보"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#1976D2"
-            android:layout_marginBottom="8dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvForecast"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="8dp"/>
-
-    </LinearLayout>
 
 </LinearLayout> 

@@ -1,4 +1,4 @@
-package com.example.gps.model;
+package com.example.gps;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
