@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.gps">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- 필수 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
+        android:name=".GuideFriendApplication"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,13 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GPS"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:vmSafeMode="false"
         tools:targetApi="31">
 
         <!-- 네이버 지도 API 키 -->
         <meta-data
             android:name="com.naver.maps.map.NCP_KEY_ID"
             android:value="iaxrf6bmtc" />
-
         <!-- 앱 시작 액티비티 -->
         <activity
             android:name=".SplashActivity"
@@ -36,7 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- 네이버 지도 관련 액티비티 -->
         <activity
             android:name=".MapsActivity"
@@ -55,6 +56,10 @@
         <activity android:name=".CommunityActivity" />
         <activity android:name=".TipsActivity" />
         <activity android:name=".FavoritesActivity" />
+        <activity android:name=".CapsuleAnimationActivity" />
+        <activity android:name=".GachaResultActivity" />
+        <activity android:name=".ShopActivity" />
+        <activity android:name=".StepCounterActivity" />
 
     </application>
 </manifest>

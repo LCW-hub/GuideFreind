@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 # Android 관련
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
 *.iml
 .gradle
 /local.properties
@@ -20,9 +14,6 @@
 .externalNativeBuild
 .cxx
 local.properties
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
 # Android Studio
 *.iml
@@ -88,6 +79,3 @@ Thumbs.db
 # API 키 파일 (보안상 제외)
 app/src/main/res/values/api_keys.xml
 server/.env
-=======
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd

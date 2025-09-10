@@ -17,16 +17,218 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:gravity="end"
+            android:background="@drawable/toolbar_gradient"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:title="산책로 도우미"
             app:titleTextColor="@android:color/white" />
 
-        <!-- 날씨 정보 패널 -->
+        <!-- 지도 영역 (전체 화면) -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_card_round"
+            android:elevation="4dp">
+
+            <!-- 네이버 지도 -->
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp" />
+
+            <!-- 좌측 하단 날씨 위젯 (카카오맵 스타일) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/weather_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|start"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+
+                    <!-- 날씨 아이콘 -->
+                    <ImageView
+                        android:id="@+id/iv_weather_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_weather_clear"
+                        android:layout_marginEnd="8dp" />
+
+                    <!-- 온도 텍스트 -->
+                    <TextView
+                        android:id="@+id/tv_temperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23°"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- 우측 하단 내 위치 버튼 (카카오맵 스타일) -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnMyLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_my_location"
+                app:backgroundTint="@android:color/white"
+                app:tint="@color/colorPrimary"
+                app:fabSize="mini" />
+
+            <!-- 좌측 상단 원위치 버튼 -->
+            <Button
+                android:id="@+id/btnAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_margin="16dp"
+                android:text="원위치"
+                android:textSize="12sp"
+                android:background="@drawable/bg_button_round"
+                android:textColor="@android:color/white" />
+
+            <!-- 우측 상단 코스 선택 버튼 -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnSelectCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_chart"
+                app:backgroundTint="@color/colorButton"
+                app:tint="@android:color/white" />
+
+            <!-- 코스 정보 패널 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/course_info_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="16dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/colorCard"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- 핸들 바 -->
+                    <View
+                        android:layout_width="40dp"
+                        android:layout_height="4dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/bg_round_blue" />
+
+                    <!-- 코스 제목 -->
+                    <TextView
+                        android:id="@+id/course_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="둘레길 1코스 - 역사 탐방길"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- 추천 대상 -->
+                    <TextView
+                        android:id="@+id/course_recommendation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👨‍👩‍👧‍👦 가족 단위, 초보자 추천"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- 코스 정보 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:id="@+id/course_distance"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="📏 거리: 3.2km"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/course_duration"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="⏱️ 소요시간: 1시간30분"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <!-- 난이도 -->
+                    <TextView
+                        android:id="@+id/course_difficulty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⭐ 난이도: 쉬움"
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- 코스 설명 -->
+                    <TextView
+                        android:id="@+id/course_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="남한산성의 대표적인 입문 코스로, 주요 성문과 역사적 건물들을 둘러볼 수 있습니다. 경사가 완만하여 어린이나 어르신도 부담 없이 걸을 수 있으며, 조선시대 역사와 문화를 체험할 수 있는 최적의 코스입니다."
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- 닫기 버튼 -->
+                    <Button
+                        android:id="@+id/btn_close_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="코스 정보 닫기"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/bg_button_green" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+
+        <!-- 만보기 패널 -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/info_panel"
+            android:id="@+id/step_counter_panel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -40,96 +242,164 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/tvWeatherInfo"
+                <!-- 패널 제목 -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="현재 위치의 날씨 정보를 확인하세요"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="16sp"
-                    android:gravity="center" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="🚶‍♂️ 만보기 &amp; 거리 측정"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_step_counter_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상세보기"
+                        android:textSize="12sp"
+                        app:icon="@android:drawable/ic_menu_directions"
+                        app:iconGravity="textStart"
+                        app:iconSize="16dp"
+                        app:cornerRadius="20dp"
+                        app:backgroundTint="@color/colorButton" />
+
+                </LinearLayout>
+
+                <!-- 만보기 정보 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+
+                    <!-- 걸음 수 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_steps_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="걸음"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <!-- 거리 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_distance_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.00"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="km"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <!-- 칼로리 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_calories_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="kcal"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- 제어 버튼 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_start_main"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="8dp"
+                        android:text="시작"
+                        android:textSize="14sp"
+                        app:icon="@android:drawable/ic_media_play"
+                        app:iconGravity="textStart"
+                        app:iconSize="16dp"
+                        app:cornerRadius="25dp"
+                        app:backgroundTint="@color/colorButton" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_stop_main"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="중지"
+                        android:textSize="14sp"
+                        app:icon="@android:drawable/ic_media_pause"
+                        app:iconGravity="textStart"
+                        app:iconSize="16dp"
+                        app:cornerRadius="25dp"
+                        app:backgroundTint="@color/colorAccent" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <!-- 지도 영역 -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-            <com.naver.maps.map.MapView
-                android:id="@+id/map_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <!-- 우측 상단 버튼들 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|end"
-                android:layout_margin="16dp"
-                android:orientation="vertical">
-
-                <!-- 내 위치 버튼 -->
-                <Button
-                    android:id="@+id/btnMyLocation"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/bg_button_round"
-                    android:text="📍"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/white" />
-
-                <!-- 원위치 버튼 -->
-                <Button
-                    android:id="@+id/btnAll"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/bg_button_round"
-                    android:text="🏠"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/white" />
-
-            </LinearLayout>
-
-            <!-- 코스 정보 패널 -->
-            <LinearLayout
-                android:id="@+id/course_info_panel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_margin="16dp"
-                android:background="@drawable/map_rounded_background"
-                android:orientation="vertical"
-                android:padding="16dp"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/tvCourseInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="코스 정보"
-                    android:textColor="@color/textColorPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginBottom="16dp" />
-
-                <Button
-                    android:id="@+id/btnCloseInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="닫기"
-                    android:textColor="@android:color/white"
-                    android:background="@drawable/bg_button_green" />
-
-            </LinearLayout>
-
-        </FrameLayout>
 
     </LinearLayout>
 
@@ -139,7 +409,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:background="@color/colorCard"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/right_drawer_menu" />
 

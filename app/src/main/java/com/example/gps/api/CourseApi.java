@@ -4,6 +4,7 @@ import com.example.gps.model.CourseDetail;
 import com.example.gps.model.CourseRecommendation;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -93,40 +94,50 @@ public class CourseApi {
     }
     
     private static CourseDetail parseCourseDetail(JSONObject json) {
-        CourseDetail course = new CourseDetail();
-        course.setCourseId(json.getInt("courseId"));
-        course.setCourseName(json.getString("courseName"));
-        course.setDescription(json.getString("description"));
-        course.setDistance(json.getDouble("distance"));
-        course.setDuration(json.getInt("duration"));
-        course.setSteps(json.getInt("steps"));
-        course.setPetFriendly(json.getBoolean("petFriendly"));
-        course.setCalories(json.getDouble("calories"));
-        course.setWaterIntake(json.getDouble("waterIntake"));
-        course.setDifficulty(json.getString("difficulty"));
-        course.setCrowdLevel(json.getInt("crowdLevel"));
-        course.setRating(json.getDouble("rating"));
-        course.setReviewCount(json.getInt("reviewCount"));
-        
-        return course;
+        try {
+            CourseDetail course = new CourseDetail();
+            course.setCourseId(json.getInt("courseId"));
+            course.setCourseName(json.getString("courseName"));
+            course.setDescription(json.getString("description"));
+            course.setDistance(json.getDouble("distance"));
+            course.setDuration(json.getInt("duration"));
+            course.setSteps(json.getInt("steps"));
+            course.setPetFriendly(json.getBoolean("petFriendly"));
+            course.setCalories(json.getDouble("calories"));
+            course.setWaterIntake(json.getDouble("waterIntake"));
+            course.setDifficulty(json.getString("difficulty"));
+            course.setCrowdLevel(json.getInt("crowdLevel"));
+            course.setRating(json.getDouble("rating"));
+            course.setReviewCount(json.getInt("reviewCount"));
+            
+            return course;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     private static CourseRecommendation parseCourseRecommendation(JSONObject json) {
-        CourseRecommendation recommendation = new CourseRecommendation();
-        recommendation.setCourseId(json.getInt("courseId"));
-        recommendation.setCourseName(json.getString("courseName"));
-        recommendation.setRecommendationScore(json.getDouble("recommendationScore"));
-        recommendation.setReason(json.getString("reason"));
-        recommendation.setSeason(json.getString("season"));
-        recommendation.setWeather(json.getString("weather"));
-        recommendation.setCrowdLevel(json.getInt("crowdLevel"));
-        recommendation.setFestival(json.getBoolean("isFestival"));
-        
-        if (recommendation.isFestival()) {
-            recommendation.setFestivalName(json.getString("festivalName"));
-            recommendation.setFestivalPeriod(json.getString("festivalPeriod"));
+        try {
+            CourseRecommendation recommendation = new CourseRecommendation();
+            recommendation.setCourseId(json.getInt("courseId"));
+            recommendation.setCourseName(json.getString("courseName"));
+            recommendation.setRecommendationScore(json.getDouble("recommendationScore"));
+            recommendation.setReason(json.getString("reason"));
+            recommendation.setSeason(json.getString("season"));
+            recommendation.setWeather(json.getString("weather"));
+            recommendation.setCrowdLevel(json.getInt("crowdLevel"));
+            recommendation.setFestival(json.getBoolean("isFestival"));
+            
+            if (recommendation.isFestival()) {
+                recommendation.setFestivalName(json.getString("festivalName"));
+                recommendation.setFestivalPeriod(json.getString("festivalPeriod"));
+            }
+            
+            return recommendation;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
         }
-        
-        return recommendation;
     }
 } 

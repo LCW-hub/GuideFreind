@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 원형 배경 -->
+    <!-- Circle background -->
     <item>
         <shape android:shape="oval">
             <solid android:color="#FFFFFF" />
@@ -9,7 +9,7 @@
         </shape>
     </item>
     
-    <!-- 실제 이미지를 원형으로 클립 -->
+    <!-- Photo image as circle -->
     <item android:top="3dp" android:bottom="3dp" 
           android:left="3dp" android:right="3dp">
         <shape android:shape="oval">

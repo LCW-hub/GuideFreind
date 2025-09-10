@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/favorites_background">
 
-    <!-- 툴바 -->
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!-- 스크롤뷰 -->
+    <!-- ScrollView -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,7 +26,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- 헤더 -->
+            <!-- Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="즐겨찾는 길"
+                    android:text="내 즐겨찾기"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="#FF6F00"
@@ -53,14 +53,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="당신이 사랑하는 특별한 산책로들"
+                    android:text="자주 찾는 산책로와 코스 목록"
                     android:textSize="14sp"
                     android:textColor="#666666"
                     android:gravity="center" />
 
             </LinearLayout>
 
-            <!-- 즐겨찾는 길 목록 -->
+            <!-- Favorite course list -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🌸"
+                            android:text="🏔️"
                             android:textSize="28sp"
                             android:layout_marginEnd="12dp" />
 
@@ -96,7 +96,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="남한산성 둘레길"
+                                android:text="한강 산책로"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="#333333" />
@@ -121,7 +121,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="역사와 자연이 어우러진 아름다운 산책로입니다. 봄에는 벚꽃이 만개해 더욱 아름다워요!"
+                        android:text="자연 친화적인 한강 산책로입니다. 봄철 벚꽃 시즌에는 특히 아름다워요!"
                         android:textSize="14sp"
                         android:textColor="#666666"
                         android:lineSpacingExtra="2dp" />
@@ -152,7 +152,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🌙"
+                            android:text="🌲"
                             android:textSize="28sp"
                             android:layout_marginEnd="12dp" />
 
@@ -165,15 +165,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-                                android:text="남한산성 야경길"
-=======
-<<<<<<< HEAD
-                                android:text="남한산성 야경길"
-=======
-                                android:text="한강공원 야경길"
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
+                                android:text="리버사이드 공원 코스"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
                                 android:textColor="#333333" />
@@ -198,7 +190,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="저녁 시간에 걷기 좋은 로맨틱한 산책로입니다. 한강의 야경이 정말 아름다워요!"
+                        android:text="연인과 함께 걷기 좋은 로맨틱 코스예요. 강변 풍경이 특히 아름답습니다!"
                         android:textSize="14sp"
                         android:textColor="#666666"
                         android:lineSpacingExtra="2dp" />
@@ -207,7 +199,7 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- 빈 상태 메시지 -->
+            <!-- Empty state message -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -219,14 +211,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="💫"
+                    android:text="📝"
                     android:textSize="32sp"
                     android:layout_marginBottom="16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="더 많은 즐겨찾는 길을 추가해보세요!"
+                    android:text="즐겨찾는 산책로를 추가하면 맞춤 추천을 받을 수 있어요!"
                     android:textSize="16sp"
                     android:textColor="#666666"
                     android:gravity="center" />

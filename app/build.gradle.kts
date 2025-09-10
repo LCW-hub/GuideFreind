@@ -5,16 +5,19 @@ plugins {
 
 android {
     namespace = "com.example.gps"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.gps"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        // UI 성능 개선을 위한 설정
+        vectorDrawables.useSupportLibrary = true
     }
 
     // 리소스 최적화 설정
@@ -24,16 +27,26 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+        }
     }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    // UI 성능 개선을 위한 설정
+    buildFeatures {
+        viewBinding = true
     }
 
     configurations {

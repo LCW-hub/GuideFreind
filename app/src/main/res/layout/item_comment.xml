@@ -16,7 +16,7 @@
             android:id="@+id/tvCommentAuthor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="익명"
+            android:text="Anonymous"
             android:textStyle="bold"
             android:textSize="12sp"
             android:layout_marginEnd="8dp"/>
@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="방금 전"
+            android:text="Just now"
             android:textSize="10sp"
             android:textColor="@android:color/darker_gray"/>
 
@@ -34,7 +34,7 @@
             android:id="@+id/btnReply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="답글"
+            android:text="Reply"
             android:textSize="10sp"
             android:backgroundTint="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
@@ -44,7 +44,7 @@
             android:id="@+id/btnDeleteComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="삭제"
+            android:text="Delete"
             android:textSize="10sp"
             android:backgroundTint="@android:color/holo_red_light"
             android:textColor="@android:color/white"
@@ -55,7 +55,7 @@
         android:id="@+id/tvCommentContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="댓글 내용"
+        android:text="Comment content"
         android:textSize="14sp"
         android:layout_marginStart="8dp"/>
 

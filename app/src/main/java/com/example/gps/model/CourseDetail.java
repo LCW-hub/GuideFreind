@@ -1,4 +1,4 @@
-package com.example.gps;
+package com.example.gps.model;
 
 import java.util.List;
 

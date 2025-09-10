@@ -29,8 +29,8 @@
     <!-- 긴급 상황 유형 배열 -->
     <string-array name="emergency_types">
         <item>의료</item>
-        <item>안전</item>
         <item>화재</item>
+        <item>사고</item>
         <item>기타</item>
     </string-array>
 

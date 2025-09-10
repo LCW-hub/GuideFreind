@@ -1,4 +1,4 @@
-package com.example.gps;
+package com.example.gps.model;
 
 public class User {
     private String username;

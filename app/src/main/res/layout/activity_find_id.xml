@@ -11,19 +11,19 @@
         android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이름 입력"/>
+        android:hint="Enter name"/>
 
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이메일 입력"/>
+        android:hint="Enter email"/>
 
     <Button
         android:id="@+id/btn_find_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="아이디 찾기"/>
+        android:text="Find ID"/>
 
     <TextView
         android:id="@+id/tv_found_id"

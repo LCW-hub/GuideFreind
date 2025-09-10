@@ -3,33 +3,33 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     
-    <!-- 메인 색상 - 자연친화적인 녹색 계열 -->
-    <color name="colorPrimary">#2E7D32</color>
-    <color name="colorPrimaryDark">#1B5E20</color>
-    <color name="colorAccent">#66BB6A</color>
+    <!-- 메인 색상 - 참조 프로젝트 값으로 통일 -->
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark">#388E3C</color>
+    <color name="colorAccent">#8BC34A</color>
     
     <!-- 보조 색상들 -->
     <color name="colorSecondary">#FF8A65</color>
     <color name="colorSurface">#FFFFFF</color>
-    <color name="colorBackground">#F9FBE7</color>
+    <color name="colorBackground">#F1F8E9</color>
     <color name="colorOnPrimary">#FFFFFF</color>
     <color name="colorOnSecondary">#000000</color>
     
     <!-- 텍스트 색상 -->
-    <color name="textColorPrimary">#2E2E2E</color>
-    <color name="textColorSecondary">#6B6B6B</color>
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecondary">#757575</color>
     
     <!-- 자연 친화적 그라데이션 색상들 -->
-    <color name="gradientStart">#81C784</color>
-    <color name="gradientEnd">#4CAF50</color>
-    <color name="weatherBlue">#42A5F5</color>
-    <color name="naturGreen">#66BB6A</color>
+    <color name="gradientStart">#4FC3F7</color>
+    <color name="gradientEnd">#29B6F6</color>
+    <color name="weatherBlue">#03A9F4</color>
+    <color name="naturGreen">#4CAF50</color>
     
     <!-- 카드 및 UI 요소 색상 -->
     <color name="colorCard">#FFFFFF</color>
     <color name="colorText">#2E2E2E</color>
     <color name="colorSub">#C8E6C9</color>
-    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorDivider">#BDBDBD</color>
     
     <!-- 버튼 색상 -->
     <color name="colorButton">#4CAF50</color>
@@ -38,8 +38,8 @@
     
     <!-- 상태 색상 -->
     <color name="colorError">#EF5350</color>
-    <color name="colorSuccess">#66BB6A</color>
-    <color name="colorWarning">#FFB74D</color>
+    <color name="colorSuccess">#4CAF50</color>
+    <color name="colorWarning">#FFC107</color>
     
     <!-- 산책 테마 추가 색상 -->
     <color name="trailGreen">#4CAF50</color>
@@ -51,11 +51,13 @@
     <color name="trailPurple">#AB47BC</color>
     <color name="trailRed">#EF5350</color>
 
-    
     <!-- 배경 그라데이션 색상 -->
     <color name="bgGradientStart">#E8F5E8</color>
     <color name="bgGradientEnd">#F1F8E9</color>
     
     <!-- 카드 그림자 색상 -->
     <color name="cardShadow">#1A000000</color>
+    
+    <!-- 정보 카드 색상 -->
+    <color name="colorInfo">#E3F2FD</color>
 </resources>

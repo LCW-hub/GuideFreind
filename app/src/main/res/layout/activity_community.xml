@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="#F5F5F5">
 
-    <!-- 툴바 -->
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!-- 헤더 -->
+    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="👥"
+            android:text="💬"
             android:textSize="36sp"
             android:layout_marginBottom="8dp" />
 
@@ -43,26 +43,26 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="함께 걸어요, 경험을 나눠요!"
+            android:text="나만의 산책 경험을 서로 공유해요!"
             android:textSize="14sp"
             android:textColor="@android:color/white"
             android:alpha="0.9" />
 
     </LinearLayout>
 
-    <!-- 커뮤니티 글 목록 RecyclerView -->
+    <!-- Community post list RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-                            android:layout_weight="1"
+        android:layout_weight="1"
         android:padding="16dp"
         android:clipToPadding="false"/>
 
     <Button
         android:id="@+id/btnWritePost"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="글쓰기"
         android:layout_margin="16dp"
         android:backgroundTint="@color/colorPrimary"

@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="댓글"
+        android:text="Comments"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="댓글을 입력하세요"
+            android:hint="Enter your comment..."
             android:maxLines="3"
             android:inputType="textMultiLine"
             android:background="@android:drawable/edit_text"
@@ -42,7 +42,7 @@
             android:id="@+id/btnAddComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="등록"
+            android:text="Add"
             android:textSize="12sp"/>
     </LinearLayout>
 
@@ -59,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="답글을 입력하세요"
+            android:hint="Enter your reply..."
             android:maxLines="2"
             android:inputType="textMultiLine"
             android:background="@android:drawable/edit_text"
@@ -69,7 +69,7 @@
             android:id="@+id/btnAddReply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="답글"
+            android:text="Reply"
             android:textSize="12sp"/>
     </LinearLayout>
 
@@ -77,6 +77,6 @@
         android:id="@+id/btnCloseComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="닫기"
+        android:text="Close"
         android:layout_marginTop="12dp"/>
 </LinearLayout> 

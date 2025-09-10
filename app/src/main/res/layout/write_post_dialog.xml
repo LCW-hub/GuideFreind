@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="글쓰기"
+        android:text="Write Post"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
@@ -19,7 +19,7 @@
         android:id="@+id/etDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="제목"
+        android:hint="Title"
         android:maxLines="1"
         android:inputType="textCapSentences"
         android:layout_marginBottom="12dp"/>
@@ -28,7 +28,7 @@
         android:id="@+id/etDialogContent"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:hint="내용을 입력하세요"
+        android:hint="Enter content..."
         android:gravity="top"
         android:inputType="textMultiLine"
         android:background="@android:drawable/edit_text"
@@ -38,7 +38,7 @@
         android:id="@+id/etDialogEmoji"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이모지 (예: 😊)"
+        android:hint="Emoji (optional)"
         android:maxLines="1"
         android:inputType="text"
         android:layout_marginBottom="16dp"/>
@@ -53,13 +53,13 @@
             android:id="@+id/btnDialogCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="취소"/>
+            android:text="Cancel"/>
 
         <Button
             android:id="@+id/btnDialogSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="등록"
+            android:text="Submit"
             android:layout_marginStart="16dp"/>
     </LinearLayout>
 

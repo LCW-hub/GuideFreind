@@ -7,18 +7,18 @@
     android:background="@drawable/weather_background"
     android:padding="16dp">
 
-    <!-- 제목 -->
+    <!-- Title -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="맞춤 코스 추천"
+        android:text="Course Recommendations"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:layout_marginBottom="24dp" />
 
-    <!-- 조건 선택 카드 -->
+    <!-- Condition selection card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,12 +35,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="추천 조건 설정"
+                android:text="Set Recommendation Criteria"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
 
-            <!-- 계절 선택 -->
+            <!-- Season selection -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="계절:"
+                    android:text="Season:"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"
                     android:layout_gravity="center_vertical" />
@@ -63,7 +63,7 @@
                     android:entries="@array/seasons" />
             </LinearLayout>
 
-            <!-- 날씨 선택 -->
+            <!-- Weather selection -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="날씨:"
+                    android:text="Weather:"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"
                     android:layout_gravity="center_vertical" />
@@ -86,7 +86,7 @@
                     android:entries="@array/weather_conditions" />
             </LinearLayout>
 
-            <!-- 유동인구 선택 -->
+            <!-- Crowd level selection -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="유동인구:"
+                    android:text="Crowd Level:"
                     android:textSize="16sp"
                     android:layout_marginEnd="16dp"
                     android:layout_gravity="center_vertical" />
@@ -109,7 +109,7 @@
                     android:entries="@array/crowd_levels" />
             </LinearLayout>
 
-            <!-- 버튼들 -->
+            <!-- Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="자동 감지"
+                    android:text="Auto Detect"
                     android:textColor="@android:color/white"
                     android:background="@drawable/bg_button_round"
                     android:layout_marginEnd="8dp" />
@@ -130,7 +130,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="추천받기"
+                    android:text="Get Recommendations"
                     android:textColor="@android:color/white"
                     android:background="@drawable/bg_button_green"
                     android:layout_marginStart="8dp" />
@@ -138,7 +138,7 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- 추천 결과 -->
+    <!-- Recommendation results -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_recommendations"
         android:layout_width="match_parent"
@@ -146,12 +146,12 @@
         android:layout_weight="1"
         android:visibility="gone" />
 
-    <!-- 추천 결과 없음 메시지 -->
+    <!-- No recommendations message -->
     <TextView
         android:id="@+id/tv_no_recommendations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="조건을 설정하고 추천받기를 눌러주세요."
+        android:text="Set your criteria and get recommendations!"
         android:textSize="16sp"
         android:textColor="@android:color/white"
         android:gravity="center"

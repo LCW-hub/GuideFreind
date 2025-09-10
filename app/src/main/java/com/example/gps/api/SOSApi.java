@@ -3,6 +3,7 @@ package com.example.gps.api;
 import com.example.gps.model.SOSAlert;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -117,18 +118,23 @@ public class SOSApi {
     }
     
     private static SOSAlert parseSOSAlert(JSONObject json) {
-        SOSAlert alert = new SOSAlert();
-        alert.setAlertId(json.getString("alertId"));
-        alert.setUserId(json.getString("userId"));
-        alert.setUserName(json.getString("userName"));
-        alert.setLatitude(json.getDouble("latitude"));
-        alert.setLongitude(json.getDouble("longitude"));
-        alert.setLocation(json.getString("location"));
-        alert.setMessage(json.getString("message"));
-        alert.setEmergencyType(json.getString("emergencyType"));
-        alert.setStatus(json.getString("status"));
-        alert.setResponseCount(json.getInt("responseCount"));
-        
-        return alert;
+        try {
+            SOSAlert alert = new SOSAlert();
+            alert.setAlertId(json.getString("alertId"));
+            alert.setUserId(json.getString("userId"));
+            alert.setUserName(json.getString("userName"));
+            alert.setLatitude(json.getDouble("latitude"));
+            alert.setLongitude(json.getDouble("longitude"));
+            alert.setLocation(json.getString("location"));
+            alert.setMessage(json.getString("message"));
+            alert.setEmergencyType(json.getString("emergencyType"));
+            alert.setStatus(json.getString("status"));
+            alert.setResponseCount(json.getInt("responseCount"));
+            
+            return alert;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 } 

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
@@ -24,37 +20,10 @@
             android:id="@+id/nav_favorites"
             android:title="⭐ 즐겨찾는 길" />
         <item
+            android:id="@+id/nav_shop"
+            android:title="🛍️ 상점" />
+        <item
             android:id="@+id/nav_settings"
             android:title="⚙️ 설정" />
     </group>
-<<<<<<< HEAD
-=======
-=======
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_login"
-        android:icon="@drawable/ic_lock"
-        android:title="🔒 로그인" />
-    <item
-        android:id="@+id/nav_register"
-        android:icon="@drawable/ic_add_circle"
-        android:title="➕ 회원가입" />
-    <item
-        android:id="@+id/nav_weather"
-        android:icon="@drawable/ic_info"
-        android:title="ℹ️ 날씨 정보" />
-    <item
-        android:id="@+id/nav_community"
-        android:icon="@drawable/ic_chart"
-        android:title="📊 산책 커뮤니티" />
-    <item
-        android:id="@+id/nav_tips"
-        android:icon="@drawable/ic_run"
-        android:title="🏃 산책로 팁" />
-    <item
-        android:id="@+id/nav_favorites"
-        android:icon="@drawable/ic_star"
-        android:title="⭐ 즐겨찾는 길" />
->>>>>>> eb6a61de94925d9caf84c525f5335968ab81c5fb
->>>>>>> 79f409103bc7353cce929cad1eee9d655a3c06bd
 </menu>

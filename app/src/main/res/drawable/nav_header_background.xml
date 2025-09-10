@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 기본 하늘 그라데이션 -->
+    <!-- Base gradient background -->
     <item>
         <shape>
             <gradient
@@ -11,8 +11,8 @@
                 android:type="linear" />
         </shape>
     </item>
-    
-    <!-- 투명한 구름 효과 -->
+
+    <!-- Light cloud effect -->
     <item android:top="30dp">
         <shape>
             <gradient
@@ -23,8 +23,8 @@
                 android:type="linear" />
         </shape>
     </item>
-    
-    <!-- 하단 녹색 그라데이션 (자연 느낌) -->
+
+    <!-- Bottom green gradient (nature touch) -->
     <item android:top="120dp">
         <shape>
             <gradient
@@ -35,4 +35,4 @@
                 android:type="linear" />
         </shape>
     </item>
-</layer-list> 
+</layer-list>

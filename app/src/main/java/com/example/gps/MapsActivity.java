@@ -64,6 +64,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.location.LocationManager;
+import android.location.LocationListener;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -175,6 +183,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
+    private LatLng startPoint;
+    private LatLng endPoint;
+
+    private boolean isSimulationRunning = false; // 시뮬레이션 실행 상태 추적
+
+    private double accumulatedDistance = 0.0;
+    private LatLng lastMovedPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -215,12 +231,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 // 즐겨찾는 길 화면으로 이동
                 Intent favoritesIntent = new Intent(this, FavoritesActivity.class);
                 startActivity(favoritesIntent);
+            } else if (id == R.id.nav_shop) {
+                // 상점 화면으로 이동
+                Intent shopIntent = new Intent(this, ShopActivity.class);
+                startActivity(shopIntent);
             } else if (id == R.id.nav_settings) {
-                // 설정 메뉴는 아직 구현되지 않음
-                Toast.makeText(this, "설정 기능은 준비 중입니다.", Toast.LENGTH_SHORT).show();
+                // 설정 메뉴
+                Toast.makeText(this, "설정 메뉴가 선택되었습니다", Toast.LENGTH_SHORT).show();
             }
+            // else if (id == R.id.nav_settings) {
+            //     // 설정 메뉴는 아직 구현되지 않음
+            //     Toast.makeText(this, "설정 기능은 준비 중입니다.", Toast.LENGTH_SHORT).show();
+            // }
 
-            // 메뉴 선택 후 드로어 닫기
+            // 메뉴 선택 후 드로어 닫기 (우측 드로어)
             drawerLayout.closeDrawer(GravityCompat.END);
             return true;
         });
@@ -251,11 +275,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // 코스 데이터 로드
         loadCoursesFromJSON();
+        
+        // 날씨 정보 로드
+        loadWeatherData();
 
         // 버튼 초기화 및 이벤트 설정
         Button btnAll = findViewById(R.id.btnAll);
-        Button btnMyLocation = findViewById(R.id.btnMyLocation);
+        com.google.android.material.floatingactionbutton.FloatingActionButton btnMyLocation = findViewById(R.id.btnMyLocation);
+        androidx.cardview.widget.CardView weatherWidget = findViewById(R.id.weather_widget);
         com.google.android.material.floatingactionbutton.FloatingActionButton btnSelectCourse = findViewById(R.id.btnSelectCourse);
+        
+        // 날씨 위젯 뷰들
+        ImageView ivWeatherIcon = findViewById(R.id.iv_weather_icon);
+        TextView tvTemperature = findViewById(R.id.tv_temperature);
 
         btnAll.setOnClickListener(v -> {
             // 대한민국 전체가 보이도록 카메라 이동
@@ -270,6 +302,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Toast.makeText(this, "📍 대한민국 전체 지도로 돌아갑니다.", Toast.LENGTH_SHORT).show();
         });
         btnMyLocation.setOnClickListener(v -> moveToCurrentLocation());
+        weatherWidget.setOnClickListener(v -> {
+            // 날씨 정보 화면으로 이동
+            Intent weatherIntent = new Intent(this, WeatherActivity.class);
+            startActivity(weatherIntent);
+        });
         btnSelectCourse.setOnClickListener(v -> {
             // 코스 선택 팝업 메뉴 표시
             PopupMenu popupMenu = new PopupMenu(this, btnSelectCourse);
@@ -293,12 +330,51 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             popupMenu.show();
         });
 
-        // 모든 btnCloseInfo.setText("코스1"), ... 부분을 아래로 교체
-        btnCloseInfo.setText("닫기");
-        // ... existing code ...
-        // onCreate 등에서 btnCloseInfo 클릭 시 패널 닫기
+        // 닫기 버튼 클릭 이벤트 설정
         btnCloseInfo.setOnClickListener(v -> hideCourseInfoPanel());
-        // ... existing code ...
+
+        // 만보기 패널 버튼 이벤트 설정
+        Button btnStartMain = findViewById(R.id.btn_start_main);
+        Button btnStopMain = findViewById(R.id.btn_stop_main);
+        Button btnStepCounterDetail = findViewById(R.id.btn_step_counter_detail);
+
+        btnStartMain.setOnClickListener(v -> {
+            if (startPoint != null && endPoint != null) {
+                // 시작점과 도착점이 설정된 경우 시뮬레이션 시작
+                startSimulation();
+            } else {
+                // 시작점과 도착점이 설정되지 않은 경우 안내 메시지
+                Toast.makeText(this, "먼저 지도에서 시작점과 도착점을 설정해주세요.", Toast.LENGTH_LONG).show();
+            }
+        });
+        
+        btnStopMain.setOnClickListener(v -> {
+            if (isSimulationRunning) {
+                stopSimulation();
+                Toast.makeText(this, "시뮬레이션을 중지했습니다", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "실행 중인 시뮬레이션이 없습니다", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        btnStepCounterDetail.setOnClickListener(v -> {
+            Intent stepCounterIntent = new Intent(this, StepCounterActivity.class);
+            startActivity(stepCounterIntent);
+        });
+    }
+
+    // 시뮬레이션 중지 메서드
+    private void stopSimulation() {
+        isSimulationRunning = false;
+        
+        // 현재위치 마커 제거
+        for (int i = activeMarkers.size() - 1; i >= 0; i--) {
+            Marker marker = activeMarkers.get(i);
+            if ("현재위치".equals(marker.getCaptionText())) {
+                marker.setMap(null);
+                activeMarkers.remove(i);
+            }
+        }
     }
 
     @Override
@@ -320,9 +396,48 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         showMainMarkers();
 
         naverMap.setOnMapClickListener((pointF, latLng) -> {
-            String message = "클릭한 위치 - 위도: " + latLng.latitude + ", 경도: " + latLng.longitude;
-            Toast.makeText(MapsActivity.this, message, Toast.LENGTH_SHORT).show();
-            Log.d("MapClick", message);
+            // 시작점과 도착점 설정
+            if (startPoint == null) {
+                startPoint = latLng;
+                Marker startMarker = new Marker();
+                startMarker.setPosition(latLng);
+                startMarker.setCaptionText("🚶‍♀️ 시작점");
+                startMarker.setIcon(OverlayImage.fromResource(R.drawable.ic_cute_start));
+                startMarker.setWidth(50);
+                startMarker.setHeight(50);
+                startMarker.setMap(naverMap);
+                activeMarkers.add(startMarker);
+                Toast.makeText(this, "시작점이 설정되었습니다. 도착점을 클릭하세요.", Toast.LENGTH_SHORT).show();
+            } else if (endPoint == null) {
+                endPoint = latLng;
+                Marker endMarker = new Marker();
+                endMarker.setPosition(latLng);
+                endMarker.setCaptionText("🏁 도착점");
+                endMarker.setIcon(OverlayImage.fromResource(R.drawable.ic_cute_end));
+                endMarker.setWidth(50);
+                endMarker.setHeight(50);
+                endMarker.setMap(naverMap);
+                activeMarkers.add(endMarker);
+                Toast.makeText(this, "도착점이 설정되었습니다. 시뮬레이션을 시작하려면 메뉴를 사용하세요.", Toast.LENGTH_SHORT).show();
+            } else {
+                // 리셋
+                for (Marker marker : activeMarkers) {
+                    if ("시작점".equals(marker.getCaptionText()) || "도착점".equals(marker.getCaptionText())) {
+                        marker.setMap(null);
+                    }
+                }
+                startPoint = latLng;
+                endPoint = null;
+                Marker startMarker = new Marker();
+                startMarker.setPosition(latLng);
+                startMarker.setCaptionText("🚶‍♀️ 시작점");
+                startMarker.setIcon(OverlayImage.fromResource(R.drawable.ic_cute_start));
+                startMarker.setWidth(50);
+                startMarker.setHeight(50);
+                startMarker.setMap(naverMap);
+                activeMarkers.add(startMarker);
+                Toast.makeText(this, "시작점이 재설정되었습니다. 도착점을 클릭하세요.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -616,10 +731,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             courseInfoPanel.setVisibility(View.GONE);
             currentCourseIndex = -1; // 코스 인덱스 초기화
             
-            // 남한산성 둘레길 마커 (산성로터리 위치)
+            // 남한산성 둘레길 마커 (산성로터리 위치) - 귀여운 스타일
             Marker namhansanMarker = new Marker();
             namhansanMarker.setPosition(new LatLng(37.478046, 127.184021));
-            namhansanMarker.setCaptionText("남한산성 둘레길");
+            namhansanMarker.setCaptionText("🏔️ 남한산성 둘레길");
+            namhansanMarker.setIcon(OverlayImage.fromResource(R.drawable.ic_cute_poi));
+            namhansanMarker.setWidth(60);
+            namhansanMarker.setHeight(60);
             namhansanMarker.setMap(naverMap);
             
             // 남한산성 마커 클릭 이벤트
@@ -646,10 +764,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return true;
             });
             
-            // 북한산 둘레길 마커 (북한산 위치)
+            // 북한산 둘레길 마커 (북한산 위치) - 귀여운 스타일
             Marker bukhansanMarker = new Marker();
             bukhansanMarker.setPosition(new LatLng(37.6586, 126.9770));
-            bukhansanMarker.setCaptionText("북한산 둘레길");
+            bukhansanMarker.setCaptionText("⛰️ 북한산 둘레길");
+            bukhansanMarker.setIcon(OverlayImage.fromResource(R.drawable.ic_cute_poi));
+            bukhansanMarker.setWidth(60);
+            bukhansanMarker.setHeight(60);
             bukhansanMarker.setMap(naverMap);
             
             // 북한산 마커 클릭 이벤트
@@ -1096,6 +1217,314 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    // 시뮬레이션 시작 메서드
+    private void startSimulation() {
+        if (startPoint == null || endPoint == null) {
+            Toast.makeText(this, "시작점과 도착점을 먼저 설정하세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Toast.makeText(this, "가짜 GPS 시뮬레이션을 시작합니다!", Toast.LENGTH_SHORT).show();
+        
+        // 시작점에서 도착점까지의 경로 표시
+        requestTMapWalkSegment(startPoint, endPoint, 0xFF00FF00); // 초록색 경로
+        
+        // 시작점에서 도착점까지의 총 거리 계산
+        double totalDistance = calculateDistance(startPoint, endPoint);
+        
+        // 거리 기반 걸음 수 추정 (평균 보폭 0.7m 가정)
+        int estimatedSteps = (int) (totalDistance / 0.7);
+        
+        // 칼로리 계산 (걸음당 0.04kcal)
+        float calories = estimatedSteps * 0.04f;
+        
+        // 만보기 패널 업데이트
+        runOnUiThread(() -> {
+            TextView tvStepsMain = findViewById(R.id.tv_steps_main);
+            TextView tvDistanceMain = findViewById(R.id.tv_distance_main);
+            TextView tvCaloriesMain = findViewById(R.id.tv_calories_main);
+
+            if (tvStepsMain != null && tvDistanceMain != null && tvCaloriesMain != null) {
+                tvStepsMain.setText(String.valueOf(estimatedSteps));
+                tvDistanceMain.setText(String.format("%.2f", totalDistance / 1000.0)); // 미터를 km로 변환
+                tvCaloriesMain.setText(String.format("%.1f", calories));
+            }
+        });
+        
+        // 시뮬레이션 완료 메시지
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            Toast.makeText(this, "시뮬레이션이 완료되었습니다! 총 " + estimatedSteps + "걸음, " + 
+                String.format("%.2f", totalDistance / 1000.0) + "km", Toast.LENGTH_LONG).show();
+        }, 2000);
+        
+        isSimulationRunning = true; // 시뮬레이션 실행 상태 업데이트
+        
+        // 실시간 시뮬레이션 시작
+        startRealTimeSimulation(startPoint, endPoint, totalDistance);
+    }
+
+    // 실시간 시뮬레이션 시작
+    private void startRealTimeSimulation(LatLng start, LatLng end, double totalDistance) {
+        // TMap API로 실제 보행 경로를 가져와서 시뮬레이션
+        requestTMapWalkSegmentForSimulation(start, end, totalDistance);
+    }
+
+    // 시뮬레이션용 TMap 경로 요청
+    private void requestTMapWalkSegmentForSimulation(LatLng start, LatLng end, double totalDistance) {
+        new Thread(() -> {
+            try {
+                URL url = new URL("https://apis.openapi.sk.com/tmap/routes/pedestrian?version=1&format=json");
+                HttpURLConnection conn = ( HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("appKey", TMAP_API_KEY);
+                conn.setDoOutput(true);
+                conn.setConnectTimeout(15000);
+                conn.setReadTimeout(20000);
+
+                JSONObject body = new JSONObject();
+                body.put("startX", start.longitude);
+                body.put("startY", start.latitude);
+                body.put("endX", end.longitude);
+                body.put("endY", end.latitude);
+                body.put("reqCoordType", "WGS84GEO");
+                body.put("resCoordType", "WGS84GEO");
+                body.put("startName", "출발지");
+                body.put("endName", "도착지");
+
+                try (OutputStream os = conn.getOutputStream()) {
+                    os.write(body.toString().getBytes("UTF-8"));
+                }
+
+                int code = conn.getResponseCode();
+                if (code == 200) {
+                    InputStreamReader isr = new InputStreamReader(conn.getInputStream());
+                    BufferedReader br = new BufferedReader(isr);
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) sb.append(line);
+
+                    JSONObject json = new JSONObject(sb.toString());
+                    JSONArray features = json.getJSONArray("features");
+
+                    List<LatLng> path = new ArrayList<>();
+                    for (int i = 0; i < features.length(); i++) {
+                        JSONObject geometry = features.getJSONObject(i).getJSONObject("geometry");
+                        if ("LineString".equals(geometry.getString("type"))) {
+                            JSONArray coords = geometry.getJSONArray("coordinates");
+                            for (int j = 0; j < coords.length(); j++) {
+                                JSONArray point = coords.getJSONArray(j);
+                                path.add(new LatLng(point.getDouble(1), point.getDouble(0)));
+                            }
+                        }
+                    }
+
+                    if (path.size() > 2) {
+                        // UI 스레드에서 시뮬레이션 시작
+                        runOnUiThread(() -> {
+                            startPathSimulation(path, totalDistance);
+                        });
+                    } else {
+                        // 경로가 유효하지 않으면 직선 경로로 시뮬레이션
+                        runOnUiThread(() -> {
+                            List<LatLng> straightPath = new ArrayList<>();
+                            straightPath.add(start);
+                            straightPath.add(end);
+                            startPathSimulation(straightPath, totalDistance);
+                        });
+                    }
+                } else {
+                    // API 오류 시 직선 경로로 시뮬레이션
+                    runOnUiThread(() -> {
+                        List<LatLng> straightPath = new ArrayList<>();
+                        straightPath.add(start);
+                        straightPath.add(end);
+                        startPathSimulation(straightPath, totalDistance);
+                    });
+                }
+
+            } catch (Exception e) {
+                Log.e("TMapSimulation", "경로 요청 실패", e);
+                // 예외 발생 시 직선 경로로 시뮬레이션
+                runOnUiThread(() -> {
+                    List<LatLng> straightPath = new ArrayList<>();
+                    straightPath.add(start);
+                    straightPath.add(end);
+                    startPathSimulation(straightPath, totalDistance);
+                });
+            }
+        }).start();
+    }
+
+    // 경로를 따라 시뮬레이션
+    private void startPathSimulation(List<LatLng> path, double totalDistance) {
+        if (path.size() < 2) return;
+
+        // 누적 거리 초기화
+        accumulatedDistance = 0.0;
+        lastMovedPosition = new LatLng(path.get(0).latitude, path.get(0).longitude);
+
+        // 경로 표시 (초록색)
+        PathOverlay pathOverlay = new PathOverlay();
+        pathOverlay.setCoords(path);
+        pathOverlay.setColor(0xFF00FF00);
+        pathOverlay.setWidth(12);
+        pathOverlay.setMap(naverMap);
+        pathOverlays.add(pathOverlay);
+
+        // 현재 위치를 시작점으로 설정
+        final int[] currentPathIndex = {0};
+        final LatLng[] currentPosition = {new LatLng(path.get(0).latitude, path.get(0).longitude)};
+        
+        // 현재 위치 마커 생성
+        Marker currentLocationMarker = new Marker();
+        currentLocationMarker.setPosition(currentPosition[0]);
+        currentLocationMarker.setCaptionText("현재위치");
+        currentLocationMarker.setMap(naverMap);
+        activeMarkers.add(currentLocationMarker);
+        
+        // 시뮬레이션 실행
+        Handler simulationHandler = new Handler(Looper.getMainLooper());
+        Runnable simulationRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!isSimulationRunning) {
+                    // 시뮬레이션이 중지된 경우 마커 제거
+                    currentLocationMarker.setMap(null);
+                    activeMarkers.remove(currentLocationMarker);
+                    return;
+                }
+                
+                // 경로의 마지막 지점에 도달했는지 확인
+                if (currentPathIndex[0] >= path.size() - 1) {
+                    // 시뮬레이션 완료
+                    isSimulationRunning = false;
+                    Toast.makeText(MapsActivity.this, "시뮬레이션이 완료되었습니다!", Toast.LENGTH_SHORT).show();
+                    
+                    // 현재 위치 마커 제거
+                    currentLocationMarker.setMap(null);
+                    activeMarkers.remove(currentLocationMarker);
+                    return;
+                }
+                
+                // 다음 경로 지점으로 이동
+                LatLng nextPoint = path.get(currentPathIndex[0] + 1);
+                double distanceToNext = calculateDistance(currentPosition[0], nextPoint);
+                
+                if (distanceToNext <= 2.0) { // 2미터 이내에 도달
+                    // 다음 경로 지점으로 이동
+                    currentPathIndex[0]++;
+                    currentPosition[0] = new LatLng(nextPoint.latitude, nextPoint.longitude);
+                } else {
+                    // 다음 지점 방향으로 조금씩 이동 (더 부드럽게)
+                    double moveDistance = Math.min(distanceToNext * 0.1, 2.0); // 최대 2m씩 이동하여 더 부드럽게
+                    double bearing = calculateBearing(currentPosition[0], nextPoint);
+                    LatLng newPosition = calculateNewPosition(currentPosition[0], bearing, moveDistance);
+                    currentPosition[0] = newPosition;
+                }
+                
+                // 실제 이동한 거리 누적
+                if (lastMovedPosition != null) {
+                    double actualDistanceMoved = calculateDistance(lastMovedPosition, currentPosition[0]);
+                    accumulatedDistance += actualDistanceMoved;
+                }
+                lastMovedPosition = new LatLng(currentPosition[0].latitude, currentPosition[0].longitude);
+                
+                // 현재 위치 마커 업데이트
+                currentLocationMarker.setPosition(currentPosition[0]);
+                
+                // 지도 중심을 새로운 위치로 이동
+                naverMap.moveCamera(CameraUpdate.scrollTo(currentPosition[0]));
+                
+                // 실시간 만보기 패널 업데이트 (누적된 실제 거리 사용)
+                updateStepCounterWithAccumulatedDistance();
+                
+                // 다음 이동 예약 (더 빠르게 이동하여 부드럽게)
+                simulationHandler.postDelayed(this, 100); // 100ms마다 이동
+            }
+        };
+        
+        simulationHandler.post(simulationRunnable);
+    }
+
+    // 누적된 실제 거리로 만보기 업데이트
+    private void updateStepCounterWithAccumulatedDistance() {
+        // 누적된 실제 이동 거리 사용
+        double distanceTraveled = accumulatedDistance;
+        
+        // 거리 기반 걸음 수 추정 (평균 보폭 0.7m 가정)
+        int estimatedSteps = (int) (distanceTraveled / 0.7);
+        
+        // 칼로리 계산 (걸음당 0.04kcal)
+        float calories = estimatedSteps * 0.04f;
+        
+        // UI 업데이트
+        runOnUiThread(() -> {
+            TextView tvStepsMain = findViewById(R.id.tv_steps_main);
+            TextView tvDistanceMain = findViewById(R.id.tv_distance_main);
+            TextView tvCaloriesMain = findViewById(R.id.tv_calories_main);
+
+            if (tvStepsMain != null && tvDistanceMain != null && tvCaloriesMain != null) {
+                tvStepsMain.setText(String.valueOf(estimatedSteps));
+                tvDistanceMain.setText(String.format("%.2f", distanceTraveled / 1000.0)); // 미터를 km로 변환
+                tvCaloriesMain.setText(String.format("%.1f", calories));
+            }
+        });
+    }
+
+    // 두 지점 간 거리 계산 (미터)
+    private double calculateDistance(LatLng point1, LatLng point2) {
+        double lat1 = Math.toRadians(point1.latitude);
+        double lat2 = Math.toRadians(point2.latitude);
+        double deltaLat = Math.toRadians(point2.latitude - point1.latitude);
+        double deltaLng = Math.toRadians(point2.longitude - point1.longitude);
+        
+        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+                   Math.cos(lat1) * Math.cos(lat2) *
+                   Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        
+        return 6371000 * c; // 지구 반지름 (미터)
+    }
+
+    // 두 지점 간 방향 계산 (도)
+    private double calculateBearing(LatLng point1, LatLng point2) {
+        double lat1 = Math.toRadians(point1.latitude);
+        double lat2 = Math.toRadians(point2.latitude);
+        double dLon = Math.toRadians(point2.longitude - point1.longitude);
+
+        double y = Math.sin(dLon) * Math.cos(lat2);
+        double x = Math.cos(lat1) * Math.sin(lat2) -
+                    Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon);
+        double bearing = Math.atan2(y, x);
+
+        // 라디안을 도로 변환 (0~360)
+        bearing = Math.toDegrees(bearing);
+        if (bearing < 0) {
+            bearing += 360;
+        }
+        return bearing;
+    }
+
+    // 새로운 위치 계산 (현재 위치, 방향, 거리)
+    private LatLng calculateNewPosition(LatLng current, double bearing, double distance) {
+        double R = 6371000; // 지구 반지름 (미터)
+        double lat1 = Math.toRadians(current.latitude);
+        double lon1 = Math.toRadians(current.longitude);
+        double brng = Math.toRadians(bearing);
+
+        double lat2 = Math.asin(Math.sin(lat1) * Math.cos(distance / R) +
+                                 Math.cos(lat1) * Math.sin(distance / R) * Math.cos(brng));
+
+        double lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(distance / R) * Math.cos(lat1),
+                                        Math.cos(distance / R) - Math.sin(lat1) * Math.sin(lat2));
+
+        // 경도 범위 조정 (-180 ~ 180)
+        lon2 = (lon2 + 540) % 360 - 180;
+
+        return new LatLng(Math.toDegrees(lat2), Math.toDegrees(lon2));
+    }
+
     @Override protected void onStart()   { super.onStart(); mapView.onStart(); }
     @Override protected void onResume()  { super.onResume(); mapView.onResume(); }
     @Override protected void onPause()   { super.onPause(); mapView.onPause(); }
@@ -1113,12 +1542,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_drawer) {
-            DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
             drawerLayout.openDrawer(GravityCompat.END);
+            return true;
+        } else if (id == R.id.action_filter) {
+            // 필터 기능 (향후 구현 예정)
+            Toast.makeText(this, "필터 기능이 곧 추가될 예정입니다", Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     // 날씨 정보를 표시하는 메서드
     private void showWeatherInfo() {
@@ -1159,7 +1593,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     // 날씨 정보를 가져오는 메서드
     private String getWeatherInfo(LatLng location) throws Exception {
         // OpenWeatherMap API를 사용하여 날씨 정보 가져오기
-        String apiKey = "YOUR_API_KEY"; // OpenWeatherMap API 키
+        String apiKey = "7a4aa78797771aa887fe9b14a9be94e5"; // OpenWeatherMap API 키
         String url = String.format(
             "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&appid=%s&units=metric&lang=kr",
             location.latitude, location.longitude, apiKey
@@ -1269,6 +1703,87 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         } else {
             Toast.makeText(this, "지도가 준비되지 않았습니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    
+    private void loadWeatherData() {
+        // 현재 위치 기반으로 날씨 정보 로드
+        if (naverMap != null && naverMap.getLocationSource() != null) {
+            // 서울 기본 위치로 날씨 정보 로드 (실제로는 현재 위치 사용)
+            LatLng seoulLocation = new LatLng(37.5665, 126.9780);
+            updateWeatherWidget(seoulLocation);
+        }
+    }
+    
+    private void updateWeatherWidget(LatLng location) {
+        new Thread(() -> {
+            try {
+                // OpenWeatherMap API를 사용하여 날씨 정보 가져오기
+                String apiKey = "7a4aa78797771aa887fe9b14a9be94e5"; // OpenWeatherMap API 키
+                String url = String.format(
+                    "https://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&appid=%s&units=metric&lang=kr",
+                    location.latitude, location.longitude, apiKey
+                );
+
+                URL weatherUrl = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) weatherUrl.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setConnectTimeout(5000);
+                connection.setReadTimeout(5000);
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                JSONObject json = new JSONObject(response.toString());
+                double temperature = json.getJSONObject("main").getDouble("temp");
+                JSONArray weather = json.getJSONArray("weather");
+                JSONObject weatherInfo = weather.getJSONObject(0);
+                String weatherMain = weatherInfo.getString("main");
+                String weatherDescription = weatherInfo.getString("description");
+
+                // UI 업데이트는 메인 스레드에서
+                runOnUiThread(() -> {
+                    ImageView ivWeatherIcon = findViewById(R.id.iv_weather_icon);
+                    TextView tvTemperature = findViewById(R.id.tv_temperature);
+                    
+                    // 온도 업데이트
+                    tvTemperature.setText(String.format("%.0f°", temperature));
+                    
+                    // 날씨 아이콘 업데이트
+                    int weatherIconRes = getWeatherIconResource(weatherMain);
+                    ivWeatherIcon.setImageResource(weatherIconRes);
+                });
+
+            } catch (Exception e) {
+                Log.e("WeatherAPI", "날씨 정보 로드 실패", e);
+                // 실패 시 기본값으로 설정
+                runOnUiThread(() -> {
+                    TextView tvTemperature = findViewById(R.id.tv_temperature);
+                    tvTemperature.setText("23°");
+                });
+            }
+        }).start();
+    }
+    
+    private int getWeatherIconResource(String weatherMain) {
+        switch (weatherMain.toLowerCase()) {
+            case "clear":
+                return R.drawable.ic_weather_clear;
+            case "clouds":
+                return R.drawable.ic_weather_cloudy;
+            case "rain":
+                return R.drawable.ic_weather_rainy;
+            case "snow":
+                return R.drawable.ic_weather_rainy; // 눈 아이콘이 없으므로 비 아이콘 사용
+            case "thunderstorm":
+                return R.drawable.ic_weather_rainy; // 천둥 아이콘이 없으므로 비 아이콘 사용
+            default:
+                return R.drawable.ic_weather_clear;
         }
     }
 }

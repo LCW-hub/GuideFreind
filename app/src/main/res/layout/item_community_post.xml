@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- 헤더 (작성자, 시간) -->
+        <!-- Header (author and time) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                 android:id="@+id/tvEmoji"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="🌸"
+                android:text="😊"
                 android:textSize="24sp"
                 android:layout_marginEnd="12dp" />
 
@@ -39,7 +39,7 @@
                     android:id="@+id/tvAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="산책러버"
+                    android:text="Trail Walker"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:textColor="#333333" />
@@ -48,7 +48,7 @@
                     android:id="@+id/tvTimeAgo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2시간 전"
+                    android:text="2 hours ago"
                     android:textSize="12sp"
                     android:textColor="#999999" />
 
@@ -64,7 +64,7 @@
                     android:id="@+id/btnLike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🤍"
+                    android:text="👍"
                     android:textSize="16sp"
                     android:background="@android:color/transparent"
                     android:layout_marginBottom="4dp"/>
@@ -73,7 +73,7 @@
                     android:id="@+id/btnDeletePost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="삭제"
+                    android:text="Delete"
                     android:textSize="12sp"
                     android:backgroundTint="@android:color/holo_red_light"
                     android:textColor="@android:color/white"
@@ -81,23 +81,23 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- 제목 -->
+        <!-- Title -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="남한산성 둘레길 후기 🌸"
+            android:text="Great experience on the Han River trail!"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="8dp" />
 
-        <!-- 내용 -->
+        <!-- Content -->
         <TextView
             android:id="@+id/tvContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="오늘 남한산성 둘레길을 다녀왔는데 정말 좋았어요!"
+            android:text="Today's walk on the Han River trail was really nice!"
             android:textSize="14sp"
             android:textColor="#666666"
             android:lineSpacingExtra="2dp"
@@ -105,7 +105,7 @@
             android:maxLines="3"
             android:ellipsize="end" />
 
-        <!-- 좋아요, 댓글 -->
+        <!-- Like and comment count -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

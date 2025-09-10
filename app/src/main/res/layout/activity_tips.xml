@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="@drawable/tips_background">
 
-    <!-- 툴바 -->
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <!-- 스크롤뷰 -->
+    <!-- ScrollView -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,7 +26,7 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- 헤더 -->
+            <!-- Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,14 +53,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="더 즐겁고 안전한 산책을 위한 꿀팁들"
+                    android:text="안전하고 즐거운 산책을 위한 유용한 팁"
                     android:textSize="14sp"
                     android:textColor="#666666"
                     android:gravity="center" />
 
             </LinearLayout>
 
-            <!-- 팁 카드들 -->
+            <!-- Tips cards -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🥾"
+                        android:text="👟"
                         android:textSize="32sp"
                         android:layout_marginEnd="16dp" />
 
@@ -90,7 +90,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="올바른 신발 선택"
+                            android:text="편한 신발 선택하기"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="#333333"
@@ -99,7 +99,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="산책에는 쿠션이 좋은 운동화를 착용하세요. 발가락에 여유 공간이 있고, 통기성이 좋은 신발이 최적입니다."
+                            android:text="충분한 쿠셔닝이 있는 편안한 워킹화를 착용하세요. 발가락이 편하게 움직일 공간과 통기성이 중요해요."
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:lineSpacingExtra="2dp" />
@@ -139,7 +139,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="충분한 수분 섭취"
+                            android:text="수분 보충하기"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="#333333"
@@ -148,7 +148,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="산책 전후로 충분한 물을 마시고, 긴 거리 산책 시에는 물병을 꼭 지참하세요."
+                            android:text="산책 중에는 물을 충분히 마시세요. 장거리 코스라면 물병을 꼭 챙기세요."
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:lineSpacingExtra="2dp" />
@@ -188,7 +188,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="최적의 산책 시간"
+                            android:text="산책하기 좋은 시간"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             android:textColor="#333333"
@@ -197,7 +197,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="이른 아침이나 저녁 시간대가 산책하기 가장 좋습니다. 자외선이 약하고 공기가 상쾌해요."
+                            android:text="이른 아침이나 저녁 시간이 산책하기 좋아요. 특히 아침 공기가 상쾌합니다."
                             android:textSize="14sp"
                             android:textColor="#666666"
                             android:lineSpacingExtra="2dp" />

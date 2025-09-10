@@ -11,19 +11,19 @@
         android:id="@+id/et_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="아이디 입력"/>
+        android:hint="Enter ID"/>
 
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="이메일 입력"/>
+        android:hint="Enter email"/>
 
     <Button
         android:id="@+id/btn_find_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="비밀번호 찾기"/>
+        android:text="Find Password"/>
 
     <TextView
         android:id="@+id/tv_found_pw"

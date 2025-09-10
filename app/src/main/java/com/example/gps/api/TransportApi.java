@@ -2,6 +2,7 @@ package com.example.gps.api;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -76,14 +77,19 @@ public class TransportApi {
     }
     
     private static TransportInfo parseTransportInfo(JSONObject json) {
-        TransportInfo transport = new TransportInfo();
-        transport.setType(json.getString("type"));
-        transport.setName(json.getString("name"));
-        transport.setDistance(json.getDouble("distance"));
-        transport.setWalkingTime(json.getInt("walkingTime"));
-        transport.setDescription(json.getString("description"));
-        
-        return transport;
+        try {
+            TransportInfo transport = new TransportInfo();
+            transport.setType(json.getString("type"));
+            transport.setName(json.getString("name"));
+            transport.setDistance(json.getDouble("distance"));
+            transport.setWalkingTime(json.getInt("walkingTime"));
+            transport.setDescription(json.getString("description"));
+            
+            return transport;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     // 대중교통 정보를 담는 내부 클래스
