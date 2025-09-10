@@ -1,6 +1,5 @@
 package com.example.gps;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -14,13 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
+import com.example.gps.Register.LoginActivity;
+import com.example.gps.Register.SignupActivity;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.geometry.LatLngBounds;
-import com.naver.maps.map.CameraPosition;
-import com.naver.maps.map.MapFragment;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.overlay.Marker;
@@ -34,7 +31,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -43,7 +39,7 @@ import android.widget.PopupMenu;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import com.google.android.material.navigation.NavigationView;
 import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraUpdate;
@@ -64,13 +60,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.location.LocationManager;
-import android.location.LocationListener;
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -213,7 +202,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(loginIntent);
             } else if (id == R.id.nav_signup) {
                 // 회원가입 화면으로 이동
-                Intent signupIntent = new Intent(this, RegisterActivity.class);
+                Intent signupIntent = new Intent(this, SignupActivity.class);
                 startActivity(signupIntent);
             } else if (id == R.id.nav_weather) {
                 // 날씨 화면으로 이동

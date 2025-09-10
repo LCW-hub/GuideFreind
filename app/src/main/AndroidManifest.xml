@@ -44,14 +44,14 @@
             android:exported="false" />
 
         <!-- 기타 화면들 -->
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".FindIdActivity" />
-        <activity android:name=".FindPwActivity" />
+        <activity android:name=".Register.LoginActivity" />
+        <activity android:name=".Register.SignupActivity" />
+        <activity android:name=".Register.FindIdActivity" />
+        <activity android:name=".Register.FindPwActivity" />
         <activity android:name=".AdminMain" />
         <activity android:name=".GuestMain" />
         <activity android:name=".NormalMain" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Register.RegisterActivity" />
         <activity android:name=".WeatherActivity" />
         <activity android:name=".CommunityActivity" />
         <activity android:name=".TipsActivity" />

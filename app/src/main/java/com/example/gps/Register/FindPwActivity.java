@@ -1,5 +1,5 @@
 //비번찾기
-package com.example.gps;
+package com.example.gps.Register;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.gps.R;
 
 public class FindPwActivity extends AppCompatActivity {
 

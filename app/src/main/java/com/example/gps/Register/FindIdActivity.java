@@ -1,9 +1,11 @@
 //id찾기
-package com.example.gps;
+package com.example.gps.Register;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.gps.R;
 
 public class FindIdActivity extends AppCompatActivity {
     @Override
